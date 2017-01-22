@@ -39,7 +39,7 @@ def dump():
     journal_contents = request.form['content']
     print('CONTENTS OF JOURNAL: ' + journal_contents)
     alchemy_language = AlchemyLanguageV1(api_key=SUPERSECRETKEY)
-    dumpa = json.dumps( alchemy_language.emotion(text=journal_contents), indent=2)
+    dumpa = json.dumps( alchemy_language.emotion(text=journal_contents, language='english'), indent=2)
     return render_template('results.html', dumpa = dumpa)
     #return render_template('results.html')
 
