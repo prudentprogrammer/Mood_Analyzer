@@ -1,11 +1,16 @@
 """Cloud Foundry test"""
-from flask import Flask
+from flask import Flask, render_template
 import cf_deployment_tracker
 import os
 import json
 from os.path import join, dirname
 from watson_developer_cloud import AlchemyLanguageV1
 from api_key import SUPERSECRETKEY
+
+# Bootstrap libraries
+from flask_bootstrap import Bootstrap
+
+
 
 
 # Emit Bluemix deployment event
@@ -25,7 +30,11 @@ def hello_world():
   dump = json.dumps( alchemy_language.targeted_sentiment(text='I love cats! Dogs are smelly.',
                       targets=['cats', 'dogs'],
                       language='english'), indent=2)
-  return 'Contents of dump is: ' + dump
+  return render_template('index.html')
+  #return 'Contents of dump is: ' + dump
 
 if __name__ == '__main__':
+    Bootstrap(app)
+
+  
     app.run(host='0.0.0.0', port=port)
