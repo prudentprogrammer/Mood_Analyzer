@@ -6,7 +6,7 @@
   </div> -->
 
 <body class="container">
-  <form>
+  <form method="post" action="/display">
 	  <div class="form-group">
 	  <label for="example-text-input" class="col-2 col-form-label">Journal Title</label>
 	  <div class="col-10">
@@ -16,7 +16,7 @@
 	  </div>
 	  	<div class="form-group">
 	    <label for="exampleTextarea">Journal Content</label>
-	    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+	    <textarea class="form-control" id="exampleTextarea" name="content" rows="3"></textarea>
 	  </div>
 	  <button type="submit" class="btn btn-primary">Analyze the Sentiment!!</button>
   </form>
