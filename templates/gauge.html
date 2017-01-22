@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://d3js.org/d3.v3.min.js" language="JavaScript"></script>
+    <script src="liquidFillGauge.js" language="JavaScript"></script>
+    <script src="https://d3js.org/d3-queue.v1.min.js"></script>
+    <style>
+        .liquidFillGaugeText {
+            font-family: Helvetica;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Sentiment</h2>
+    <svg id="fillgauge1" width="97%" height="250"></svg>
+    <svg id="fillgauge2" width="19%" height="200"></svg>
+    <svg id="fillgauge3" width="19%" height="200"></svg>
+    <svg id="fillgauge4" width="19%" height="200"></svg>
+    <svg id="fillgauge5" width="19%" height="200"></svg>
+    <svg id="fillgauge6" width="19%" height="200"></svg>
+    <script>
+        //read in data
+        queue()
+            .defer(d3.json, "sentiment.json") //our topojson from before
+            .defer(d3.json, "emotion.json") //our data for the bar chart
+
+        .await(ready); //ready is the function name
+        function ready(error, sen, data) {
+            if (error) throw error;
+
+            console.log(sen.docSentiment.score * 100);
+
+            console.log(data.docEmotions.anger * 100);
+
+
+
+            //POSITIVE/NEGATIVE
+            var gauge1 = loadLiquidFillGauge("fillgauge1", sen.docSentiment.score * 100);
+
+            //ANGER
+            var config1 = liquidFillGaugeDefaultSettings();
+            config1.circleColor = "#ff4351";
+            config1.textColor = "#FF4444";
+            config1.waveTextColor = "#FFAAAA";
+            config1.waveColor = "#FFDDDD";
+            config1.circleThickness = 0.2;
+            config1.textVertPosition = 0.2;
+            config1.waveAnimateTime = 1000;
+            var gauge2 = loadLiquidFillGauge("fillgauge2", data.docEmotions.anger * 100, config1);
+
+
+            //DISGUST
+            var config2 = liquidFillGaugeDefaultSettings();
+            config2.circleColor = "#FF7777";
+            config2.textColor = "#FF4444";
+            config2.waveTextColor = "#FFAAAA";
+            config2.waveColor = "#FFDDDD";
+            config2.circleThickness = 0.2;
+            config2.textVertPosition = 0.2;
+            config2.waveAnimateTime = 1000;
+            var gauge3 = loadLiquidFillGauge("fillgauge3", data.docEmotions.disgust * 100, config2);
+
+            //FEAR
+            var config3 = liquidFillGaugeDefaultSettings();
+            config3.circleColor = "#FF7777";
+            config3.textColor = "#FF4444";
+            config3.waveTextColor = "#FFAAAA";
+            config3.waveColor = "#FFDDDD";
+            config3.circleThickness = 0.2;
+            config3.textVertPosition = 0.2;
+            config3.waveAnimateTime = 1000;
+            var gauge4 = loadLiquidFillGauge("fillgauge4", data.docEmotions.fear * 100, config3);
+            var config4 = liquidFillGaugeDefaultSettings();
+
+
+            //JOY
+            config4.circleColor = "#ffbf46";
+            config4.textColor = "#FF4444";
+            config4.waveTextColor = "#FFAAAA";
+            config4.waveColor = "#FFDDDD";
+            config4.circleThickness = 0.2;
+            config4.textVertPosition = 0.2;
+            config4.waveAnimateTime = 1000;
+            var gauge5 = loadLiquidFillGauge("fillgauge5", data.docEmotions.joy * 100, config4);
+            var config5 = liquidFillGaugeDefaultSettings();
+
+
+            //SADNESS
+            config5.circleColor = "#FF7777";
+            config5.textColor = "#FF4444";
+            config5.waveTextColor = "#FFAAAA";
+            config5.waveColor = "#FFDDDD";
+            config5.circleThickness = 0.2;
+            config5.textVertPosition = 0.2;
+            config5.waveAnimateTime = 1000;
+            config5.displayPercent = false;
+            var gauge6 = loadLiquidFillGauge("fillgauge6",
+                data.docEmotions.sadness * 100, config5);
+
+
+
+            function NewValue() {
+                if (Math.random() > .5) {
+                    return Math.round(Math.random() * 100);
+                } else {
+                    return (Math.random() * 100).toFixed(1);
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>
