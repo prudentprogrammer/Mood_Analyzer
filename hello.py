@@ -17,6 +17,7 @@ from flask_bootstrap import Bootstrap
 cf_deployment_tracker.track()
 
 app = Flask(__name__)
+Bootstrap(app)
 
 # On Bluemix, get the port number from the environment variable PORT
 # When running this app on the local machine, default the port to 8080
@@ -37,7 +38,4 @@ def dump():
   return render_template('display.html', dumpa = dumpa)
 
 if __name__ == '__main__':
-    Bootstrap(app)
-
-  
     app.run(host='0.0.0.0', port=port)
