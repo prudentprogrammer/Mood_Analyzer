@@ -25,20 +25,15 @@
     <svg id="fillgauge6" width="19%" height="200"></svg>
     <script>
         //read in data
-
-
         queue()
             .defer(d3.json, "/templates/1stvis/sentiment.json") //our topojson from before
             .defer(d3.json, "/templates/1stvis/emotion.json") //our data for the bar chart
 
         .await(ready); //ready is the function name
+
         function ready(error, sen, data) {
             if (error) throw error;
-
-            console.log(sen.docSentiment.score * 100);
-
-            console.log(data.docEmotions.anger * 100);
-
+            console.log(sen.docSentiment.score);
 
 
             //POSITIVE/NEGATIVE

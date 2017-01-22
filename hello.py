@@ -16,7 +16,7 @@ import pprint
 # Emit Bluemix deployment event
 cf_deployment_tracker.track()
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path="/static", static_folder="static")
 Bootstrap(app)
 
 # On Bluemix, get the port number from the environment variable PORT
@@ -35,21 +35,27 @@ def dump():
   if request.method == 'GET':
     return render_template('display.html')
   else:
+    print 'ENTERING HERE'
     # Show the results page
     journal_contents = request.form['content']
     alchemy_language = AlchemyLanguageV1(api_key=SUPERSECRETKEY)
     
     # Emotion json
     alchemy_results = json.dumps( alchemy_language.emotion(text=journal_contents, language='english'), indent=2)
-    fo = open('templates/1stvis/emotion.json', 'w+')
+    fo = open('templates/1stvis/emotion.json', 'w')
     fo.write(alchemy_results)
+    
+    pprint.pprint(alchemy_results)
     fo.close()
     
     # Write to sentiment json
     alchemy_results = json.dumps(
     alchemy_language.sentiment(text=journal_contents, language='english'), indent=2)
-    fo = open('templates/1stvis/sentiment.json', 'w+')
+    fo = open('templates/1stvis/sentiment.json', 'w')
     fo.write(alchemy_results)
+    
+    print 'SENTIMENTS --> '
+    pprint.pprint(alchemy_results)
     fo.close()
     
     return render_template('1stvis/gauge.html')
