@@ -23,31 +23,23 @@ Bootstrap(app)
 # When running this app on the local machine, default the port to 8080
 port = int(os.getenv('PORT', 8080))
 
-
+# Render the index page
 @app.route('/') 
 def hello_world():
   return render_template('index.html')
-  #return 'Contents of dump is: ' + dump
 
+# Display takes care of form and the results page
 @app.route('/display', methods=['GET', 'POST'])
 def dump():
-
+  # Display the form
   if request.method == 'GET':
     return render_template('display.html')
   else:
-    # Show the form
+    # Show the results page
     journal_contents = request.form['content']
-    print('CONTENTS OF JOURNAL: ' + journal_contents)
     alchemy_language = AlchemyLanguageV1(api_key=SUPERSECRETKEY)
-    dumpa = json.dumps( alchemy_language.emotion(text=journal_contents, language='english'), indent=2)
-    return render_template('results.html', dumpa = dumpa)
-    #return render_template('results.html')
-
-#@app.route('/results/<content_string>')
-#def displayResults():
-#  return render_template('results.html', dumpa = content_string)
-
-
+    alchemy_results = json.dumps( alchemy_language.emotion(text=journal_contents, language='english'), indent=2)
+    return render_template('results.html', sent_results = alchemy_results)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port)
