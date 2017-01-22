@@ -44,15 +44,15 @@ def dump():
     fo.close()
     return render_template('1stvis/gauge.html')
 
-@app.route('/static/liquidFillGauge.js')
+@app.route('/templates/1stvis/liquidFillGauge.js')
 def renderPage1():
     return render_template('1stvis/liquidFillGauge.js')
 
-@app.route('/static/emotion.json')
+@app.route('/templates/1stvis/emotion.json')
 def renderPage2():
     return render_template('1stvis/emotion.json')
 
-@app.route('/static/sentiment.json')
+@app.route('/templates/1stvis/sentiment.json')
 def renderPage3():
     return render_template('1stvis/sentiment.json')
 

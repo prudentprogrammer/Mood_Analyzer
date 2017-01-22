@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title></title>
     <script src="http://d3js.org/d3.v3.min.js" language="JavaScript"></script>
-    <script src="{{url_for('static', filename='liquidFillGauge.js') }}" language="JavaScript"></script>
+    <script src="/templates/1stvis/liquidFillGauge.js" language="JavaScript"></script>
     <script src="https://d3js.org/d3-queue.v1.min.js"></script>
     <style>
         .liquidFillGaugeText {
@@ -25,9 +25,11 @@
     <svg id="fillgauge6" width="19%" height="200"></svg>
     <script>
         //read in data
+
+
         queue()
-            .defer(d3.json, "sentiment.json") //our topojson from before
-            .defer(d3.json, "emotion.json") //our data for the bar chart
+            .defer(d3.json, "/templates/1stvis/sentiment.json") //our topojson from before
+            .defer(d3.json, "/templates/1stvis/emotion.json") //our data for the bar chart
 
         .await(ready); //ready is the function name
         function ready(error, sen, data) {
