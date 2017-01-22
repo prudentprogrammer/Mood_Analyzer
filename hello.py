@@ -11,7 +11,7 @@ from api_key import SUPERSECRETKEY
 from flask_bootstrap import Bootstrap
 from flask_wtf import Form
 from wtforms import StringField, BooleanField
-
+import pprint
 
 # Emit Bluemix deployment event
 cf_deployment_tracker.track()
@@ -39,7 +39,22 @@ def dump():
     journal_contents = request.form['content']
     alchemy_language = AlchemyLanguageV1(api_key=SUPERSECRETKEY)
     alchemy_results = json.dumps( alchemy_language.emotion(text=journal_contents, language='english'), indent=2)
-    return render_template('results.html', sent_results = alchemy_results)
+    fo = open('templates/1stvis/emotion.json', 'w+')
+    fo.write(alchemy_results)
+    fo.close()
+    return render_template('1stvis/gauge.html')
+
+@app.route('/static/liquidFillGauge.js')
+def renderPage1():
+    return render_template('1stvis/liquidFillGauge.js')
+
+@app.route('/static/emotion.json')
+def renderPage2():
+    return render_template('1stvis/emotion.json')
+
+@app.route('/static/sentiment.json')
+def renderPage3():
+    return render_template('1stvis/sentiment.json')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port)
