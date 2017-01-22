@@ -23,15 +23,18 @@ app = Flask(__name__)
 port = int(os.getenv('PORT', 8080))
 
 
-@app.route('/')
+@app.route('/') 
 def hello_world():
-  alchemy_language = AlchemyLanguageV1(api_key=SUPERSECRETKEY)
-  url = 'https://developer.ibm.com/watson/blog/2015/11/03/price-reduction-for-watson-personality-insights/'
-  dump = json.dumps( alchemy_language.targeted_sentiment(text='I love cats! Dogs are smelly.',
-                      targets=['cats', 'dogs'],
-                      language='english'), indent=2)
   return render_template('index.html')
   #return 'Contents of dump is: ' + dump
+
+@app.route('/display')
+def dump():
+  alchemy_language = AlchemyLanguageV1(api_key=SUPERSECRETKEY)
+  dumpa = json.dumps( alchemy_language.targeted_sentiment(text='I love cats! Dogs are smelly.',
+                      targets=['cats', 'dogs'],
+                      language='english'), indent=2)
+  return render_template('display.html', dumpa = dumpa)
 
 if __name__ == '__main__':
     Bootstrap(app)
