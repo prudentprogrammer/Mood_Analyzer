@@ -23,10 +23,10 @@ Bootstrap(app)
 # When running this app on the local machine, default the port to 8080
 port = int(os.getenv('PORT', 8080))
 
-# Render the index page
+#Render the index page
 @app.route('/') 
 def hello_world():
-  return render_template('index.html')
+  return render_template('display.html')
 
 # Display takes care of form and the results page
 @app.route('/display', methods=['GET', 'POST'])
@@ -71,6 +71,15 @@ def renderPage2():
 @app.route('/templates/1stvis/sentiment.json')
 def renderPage3():
     return render_template('1stvis/sentiment.json')
+
+@app.route('/templates/2vis/test2.html')
+def renderPage4():
+    return render_template('2vis/test2.html')
+
+@app.route('/templates/2vis/test_subset.json')
+def renderPage5():
+    return render_template('2vis/test_subset.json')
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port)
