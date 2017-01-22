@@ -38,10 +38,20 @@ def dump():
     # Show the results page
     journal_contents = request.form['content']
     alchemy_language = AlchemyLanguageV1(api_key=SUPERSECRETKEY)
+    
+    # Emotion json
     alchemy_results = json.dumps( alchemy_language.emotion(text=journal_contents, language='english'), indent=2)
     fo = open('templates/1stvis/emotion.json', 'w+')
     fo.write(alchemy_results)
     fo.close()
+    
+    # Write to sentiment json
+    alchemy_results = json.dumps(
+    alchemy_language.sentiment(text=journal_contents, language='english'), indent=2)
+    fo = open('templates/1stvis/sentiment.json', 'w+')
+    fo.write(alchemy_results)
+    fo.close()
+    
     return render_template('1stvis/gauge.html')
 
 @app.route('/templates/1stvis/liquidFillGauge.js')
