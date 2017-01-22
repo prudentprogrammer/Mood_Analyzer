@@ -12,11 +12,15 @@
             font-family: Helvetica;
             font-weight: bold;
         }
+        
+        .fillgauge1 {
+            padding: 30px 0px;
+        }
     </style>
 </head>
 
 <body>
-    <h2>Sentiment</h2>
+
     <svg id="fillgauge1" width="97%" height="250"></svg>
     <svg id="fillgauge2" width="19%" height="200"></svg>
     <svg id="fillgauge3" width="19%" height="200"></svg>
@@ -33,68 +37,78 @@
 
         function ready(error, sen, data) {
             if (error) throw error;
-            console.log(sen.docSentiment.score);
+            if (isNaN(sen.docSentiment.score)) {
+                score = 50;
+            }
 
 
-            //POSITIVE/NEGATIVE
-            var gauge1 = loadLiquidFillGauge("fillgauge1", sen.docSentiment.score * 100);
+            var score = 0;
+            if (sen.docSentiment.score)
+            //POSITIVE ( no neg cuz it encourages positivity )
+                if (sen.docSentiment.score < 0) {
+                    score = 1 + Number(sen.docSentiment.score);
+                } else {
+                    score = sen.docSentiment.score
+                }
+            console.log(score);
+            var gauge1 = loadLiquidFillGauge("fillgauge1", score * 100);
 
             //ANGER
             var config1 = liquidFillGaugeDefaultSettings();
-            config1.circleColor = "#ff4351";
+            config1.circleColor = "#d8280b";
             config1.textColor = "#FF4444";
             config1.waveTextColor = "#FFAAAA";
             config1.waveColor = "#FFDDDD";
             config1.circleThickness = 0.2;
             config1.textVertPosition = 0.2;
-            config1.waveAnimateTime = 1000;
+            config1.waveAnimateTime = 3000;
             var gauge2 = loadLiquidFillGauge("fillgauge2", data.docEmotions.anger * 100, config1);
 
 
-            //DISGUST
+            //FEAR
             var config2 = liquidFillGaugeDefaultSettings();
-            config2.circleColor = "#FF7777";
-            config2.textColor = "#FF4444";
-            config2.waveTextColor = "#FFAAAA";
-            config2.waveColor = "#FFDDDD";
+            config2.circleColor = "#7109d6";
+            config2.textColor = "#460882";
+            config2.waveTextColor = "#460882";
+            config2.waveColor = "#b06fef";
             config2.circleThickness = 0.2;
             config2.textVertPosition = 0.2;
-            config2.waveAnimateTime = 1000;
-            var gauge3 = loadLiquidFillGauge("fillgauge3", data.docEmotions.disgust * 100, config2);
+            config2.waveAnimateTime = 3000;
+            var gauge3 = loadLiquidFillGauge("fillgauge3", data.docEmotions.fear * 100, config2);
 
-            //FEAR
+            //DISGUST
             var config3 = liquidFillGaugeDefaultSettings();
-            config3.circleColor = "#FF7777";
-            config3.textColor = "#FF4444";
-            config3.waveTextColor = "#FFAAAA";
-            config3.waveColor = "#FFDDDD";
+            config3.circleColor = "#37a30a";
+            config3.textColor = "#266d09";
+            config3.waveTextColor = "#266d09";
+            config3.waveColor = "#c6f9a5";
             config3.circleThickness = 0.2;
             config3.textVertPosition = 0.2;
-            config3.waveAnimateTime = 1000;
-            var gauge4 = loadLiquidFillGauge("fillgauge4", data.docEmotions.fear * 100, config3);
+            config3.waveAnimateTime = 3000;
+            var gauge4 = loadLiquidFillGauge("fillgauge4", data.docEmotions.disgust * 100, config3);
             var config4 = liquidFillGaugeDefaultSettings();
 
 
             //JOY
-            config4.circleColor = "#ffbf46";
-            config4.textColor = "#FF4444";
-            config4.waveTextColor = "#FFAAAA";
-            config4.waveColor = "#FFDDDD";
+            config4.circleColor = "#ce970d";
+            config4.textColor = "#d68816";
+            config4.waveTextColor = "#d68816";
+            config4.waveColor = "#edc370";
             config4.circleThickness = 0.2;
             config4.textVertPosition = 0.2;
-            config4.waveAnimateTime = 1000;
+            config4.waveAnimateTime = 3000;
             var gauge5 = loadLiquidFillGauge("fillgauge5", data.docEmotions.joy * 100, config4);
             var config5 = liquidFillGaugeDefaultSettings();
 
 
             //SADNESS
-            config5.circleColor = "#FF7777";
-            config5.textColor = "#FF4444";
-            config5.waveTextColor = "#FFAAAA";
-            config5.waveColor = "#FFDDDD";
+            config5.circleColor = "#4433e5";
+            config5.textColor = "#1a09b5";
+            config5.waveTextColor = "#1a09b5";
+            config5.waveColor = "#71acf4";
             config5.circleThickness = 0.2;
             config5.textVertPosition = 0.2;
-            config5.waveAnimateTime = 1000;
+            config5.waveAnimateTime = 3000;
             config5.displayPercent = false;
             var gauge6 = loadLiquidFillGauge("fillgauge6",
                 data.docEmotions.sadness * 100, config5);
