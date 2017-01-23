@@ -14,16 +14,16 @@ The system analyzes and generates data visualization for monthly and daily repor
 How we built it
 API's used IBM Watson (AlchemyAPI) for sentimental/emotional analysis
 
-##Backend Flask and Python frameworks were used to render html webpages and interact with IBM Watson API. The result was then rendered.
+Backend Flask and Python frameworks were used to render html webpages and interact with IBM Watson API. The result was then rendered.
 
-##Frontend Data visualizations were performed with D3.js. Using HTML, CSS, JS, we integrated it with backend.
+Frontend Data visualizations were performed with D3.js. Using HTML, CSS, JS, we integrated it with backend.
 
 #Challenges we ran into
-##Backend Challenges We first started using Ruby on Rails and Node.js to connect and develop via the IBM Watson API. However, there were problems with compatibilities and gem issues. So we decided to switch to Flask, which is a lightweight Python framework for web apps and we faced less issues in terms of web dev after switching.
+Backend Challenges We first started using Ruby on Rails and Node.js to connect and develop via the IBM Watson API. However, there were problems with compatibilities and gem issues. So we decided to switch to Flask, which is a lightweight Python framework for web apps and we faced less issues in terms of web dev after switching.
 
-##Frontend Challenges Scalability of Data Visualizations and event integrations. Rendering the JSON files which was given to the frontend by the backend. Having multiple visualizations collectively use the same input data.
+Frontend Challenges Scalability of Data Visualizations and event integrations. Rendering the JSON files which was given to the frontend by the backend. Having multiple visualizations collectively use the same input data.
 
-##Misc. Problems Problems with exploring new frameworks
+Misc. Problems Problems with exploring new frameworks
 
 Accomplishments that we're proud of
 We are proud of the following things:
