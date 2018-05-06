@@ -4,7 +4,7 @@ import cf_deployment_tracker
 import os
 import json
 from os.path import join, dirname
-from watson_developer_cloud import AlchemyLanguageV1
+#from watson_developer_cloud import AlchemyLanguageV1
 from api_key import SUPERSECRETKEY
 
 import pprint
@@ -76,6 +76,9 @@ def renderPage4():
 def renderPage5():
     return render_template('2vis/test_subset.json')
 
+@app.route('/bla')
+def bla():
+    return bla
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port)
