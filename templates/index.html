@@ -1,0 +1,32 @@
+{% extends "skeleton.html" %}
+
+{% block customCSS %}
+  <link rel="stylesheet" href="static/css/index.css">
+{% endblock %}
+
+{% block mainBody %}
+<body class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <img src="/static/assets/background_image.png">
+    </div>
+
+    <div class="col-lg-6 form">
+      <form method="post" action="/display">
+        <div class="form-group">
+          <label for="example-text-input" class="col-form-label">Journal Title</label>
+          <div>
+              <input class="form-control" type="text" value="Entry 1" id="example-text-input" rows="5" cols="50">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleTextarea">Journal Content</label>
+          <textarea class="form-control" id="exampleTextarea" name="journal_content" rows="7" cols="50" placeholder="Log your experience of the day here."></textarea>
+        </div>
+        <button type="submit" class="btn btn-danger hot">Mind it</button>
+      </form>
+    </div>
+  </div>
+</body>
+{% endblock %}

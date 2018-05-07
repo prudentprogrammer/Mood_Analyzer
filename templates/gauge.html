@@ -1,0 +1,67 @@
+{% extends "skeleton.html" %}
+
+{% block customJS %}
+    <script src="/static/js/liquidFillGauge.js"></script>
+{% endblock %}
+
+{% block customCSS %}
+    <link rel="stylesheet" src="/static/css/gauge.css">
+{% endblock %}
+
+{% block mainBody %}
+  <div class="page-header text-center">
+      <h1>Today's Analysis...</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <svg id="fillgauge1" width="97%" height="250"></svg>
+    </div>
+
+    <div class="col-lg-12">
+      {% for i in range(2, 7) %}
+        <svg id="{{ 'fillgauge%d' % i }}" width="19%" height="200"></svg>
+      {% endfor %}
+    </div>
+
+    <div class="col-lg-12 hi">
+      <div class="row">
+        {% for emotion in ['Anger', 'Fear', 'Disgust', 'Joy', 'Sadness'] %}
+          <div class="col-lg-2">
+            <div class="text-center" id="{{ 'fill%d' % loop.index }}" width="19%" height="200">
+              <p>{{ emotion }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <a href="/test2.html">
+  <button class="btn btn-default center-block" type="submit" width="400px">View your monthly analysis </button>
+  <script src="/static/js/fillGauges.js"></script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
