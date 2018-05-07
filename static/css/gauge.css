@@ -1,0 +1,20 @@
+.liquidFillGaugeText {
+  font-family: Helvetica;
+  font-weight: bold;
+}
+
+.fillgauge1 {
+  padding: 30px 0px;
+}
+
+.col-lg-2 {
+  padding: 40px 100px;
+}
+
+.hi {
+  padding-left: 130px;
+}
+
+text.liquidFillGaugeText {
+  font-size: 36px;
+}

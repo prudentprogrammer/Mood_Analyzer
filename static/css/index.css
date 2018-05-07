@@ -1,0 +1,24 @@
+.yellow {
+  background-color: #e2ab23;
+  height: 100vh;
+  width: auto;
+}
+
+img {
+  height: 100vh;
+  width: auto;
+}
+
+.container {
+  background-color: #e2ab23;
+}
+
+.form {
+  padding: 30vh 0;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+.hot {
+  padding-left: 20vw;
+}
