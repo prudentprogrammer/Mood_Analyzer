@@ -1,2 +1,4 @@
 # Python files
-api_key.py
+secret_constants.py
+*.pyc
+.vscode/*
