@@ -2,3 +2,4 @@
 secret_constants.py
 *.pyc
 .vscode/*
+myprojectenv/
